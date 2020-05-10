@@ -26,13 +26,12 @@ public class SchoolRepository implements CrudDao<School> {
                 DB_URL, DB_USER, DB_PASSWORD
         );
             statement = connection.prepareStatement(
-                "INSERT INTO school (id, name, capacity, country) VALUES (?, ?, ?, ?)",
+                "INSERT INTO school (name, capacity, country) VALUES (?, ?, ?)",
                 Statement.RETURN_GENERATED_KEYS
         );
-            statement.setLong(1, school.getId());
-            statement.setString(2, school.getName());
-            statement.setLong(3, school.getCapacity());
-            statement.setString(4, school.getCountry());
+            statement.setString(1,school.getName());
+            statement.setLong(2,school.getCapacity());
+            statement.setString(3,school.getCountry());
 
             if (statement.executeUpdate() != 1) {
                 throw new SQLException("failed to insert data");
